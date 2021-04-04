@@ -39,6 +39,6 @@ Step 4) Configure settings to your liking
 
 Step 5) Start the Websocket
 
-### Wine
+## Wine
 
 NeosXS_Headless is not known to be able to run on wine. Please feel free to submit an issue if you have confirmed Wine to work.

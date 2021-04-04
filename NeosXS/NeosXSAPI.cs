@@ -19,6 +19,8 @@ namespace NeosXS
         private WebsocketHelper sockethelper = new WebsocketHelper();
 
         public readonly Sync<bool> EnableWebsocket;
+        public readonly Sync<string> Host;
+        public readonly Sync<int> Port;
 
         public void BuildInspectorUI(UIBuilder ui)
         {
@@ -28,6 +30,8 @@ namespace NeosXS
         protected override void OnEnabled()
         {
             EnableWebsocket.Value = false;
+            Host.Value = "ws://localhost";
+            Port.Value = 6875;
             if (!sockethelper.IsSocketServerListening)
             {
                 if (EnableWebsocket.Value)
@@ -45,6 +49,9 @@ namespace NeosXS
 
         protected override void OnChanges()
         {
+            // Update Host and Ports
+            sockethelper.host = Host.Value;
+            sockethelper.port = Port.Value;
             // Enable or Disable Websocket
             if (EnableWebsocket.Value)
             {

@@ -26,7 +26,9 @@ Note: The Neos Headless App's StatusLabel is slow to update (10s) Spamming butto
 ### Installing
 
 Step 1) Download `NeosXS_Headless.zip` from the Releases Page
+
 Step 2) Extract the Zip file Somewhere. (Inside a Directory would be optimal)
+
 Step 3) Run NeosXS_Headless.exe
 
 Note: If you get a smart screen filter, it only says this because the application is unsigned

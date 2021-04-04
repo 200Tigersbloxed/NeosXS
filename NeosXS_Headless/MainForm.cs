@@ -43,6 +43,7 @@ namespace NeosXS_Headless
 
         private void RestartSocketButton_Click(object sender, EventArgs e)
         {
+            StatusLabel.Text = "RESTARTING...";
             wsh.RestartSocket();
         }
 
@@ -61,6 +62,9 @@ namespace NeosXS_Headless
                 StatusLabel.Text = "CONNECTED";
             else
                 StatusLabel.Text = "DISCONNECTED";
+
+            wsh.host = HostTextBox.Text;
+            wsh.port = Int32.Parse(PortTextBox.Text);
         }
     }
 }

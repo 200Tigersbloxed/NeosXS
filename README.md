@@ -12,7 +12,7 @@ The Intro to working with the NeosXSPlugin.
 
 Step 1) Download `NeosXSPlugin.dll` from the Releases Page
 
-Step 2) Navigate to your Neos Install Location then into the `Libraries` Folder
+Step 2) Relocate the Plugin file to your Neos Install Location then into the `Libraries` Folder
 
 Step 3) Add `-LoadAssembly "Libraries/NeosXSPlugin.dll"` to your Launch Options, or use the Neos Launcher
 

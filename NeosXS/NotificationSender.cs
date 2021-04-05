@@ -17,28 +17,28 @@ namespace NeosXS
     {
         public static void OnUserJoined(string username, string platform)
         {
-            XSHelper.SendNotification(1, username + " Joined the World!", "User's Platform is: " + platform);
+            XSHelper.SendNotification(username + " Joined the World!", "User's Platform is: " + platform);
         }
 
         public static void OnUserLeft(string username)
         {
-            XSHelper.SendNotification(1, username + " Left the World!", RandomLeaveMessage());
+            XSHelper.SendNotification(username + " Left the World!", RandomLeaveMessage());
         }
 
         public static void UserPresentInWorldChanged(string username, bool value)
         {
             if (value)
-                XSHelper.SendNotification(1, username + " has focused into the World", "Welcome back!");
+                XSHelper.SendNotification(username + " has focused into the World", "Welcome back!");
             else
-                XSHelper.SendNotification(1, username + " has unfocused from the World", "Huh, where'd you go?");
+                XSHelper.SendNotification(username + " has unfocused from the World", "Huh, where'd you go?");
         }
 
         public static void UserPresentInHeadsetChanged(string username, bool value)
         {
             if (value)
-                XSHelper.SendNotification(1, username + " put their Headset back on", "welcome back c:");
+                XSHelper.SendNotification(username + " put their Headset back on", "welcome back c:");
             else
-                XSHelper.SendNotification(1, username + " took off their Headset", "goodbye :c");
+                XSHelper.SendNotification(username + " took off their Headset", "goodbye :c");
         }
 
         private static string RandomLeaveMessage()

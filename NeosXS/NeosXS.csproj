@@ -89,10 +89,6 @@
     <Reference Include="websocket-sharp">
       <HintPath>..\..\..\GitHub\websocket-sharp-master\websocket-sharp-master\websocket-sharp\bin\Release\websocket-sharp.dll</HintPath>
     </Reference>
-    <Reference Include="XSNotifications, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\XSNotifications-main\XSNotifications\bin\Debug\netcoreapp2.1\XSNotifications.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LogHelper.cs" />
@@ -115,6 +111,9 @@
   </Target>
   <ItemGroup>
     <PackageReference Include="ILMerge" Version="3.0.41" />
+    <PackageReference Include="System.Text.Json">
+      <Version>6.0.0-preview.2.21154.6</Version>
+    </PackageReference>
   </ItemGroup>
   <Target Name="ILMerge">
     <!-- the ILMergePath property points to the location of ILMerge.exe console application -->

@@ -21,17 +21,24 @@ namespace NeosXS
         public readonly Sync<bool> EnableWebsocket;
         public readonly Sync<string> Host;
         public readonly Sync<int> Port;
+        public readonly Sync<int> XSOPort;
 
         public void BuildInspectorUI(UIBuilder ui)
         {
             WorkerInspector.BuildInspectorUI(this, ui);
         }
 
-        protected override void OnEnabled()
+        protected override void OnAttach()
         {
             EnableWebsocket.Value = false;
             Host.Value = "ws://localhost";
             Port.Value = 6875;
+            XSOPort.Value = 42069;
+            base.OnAttach();
+        }
+
+        protected override void OnEnabled()
+        {
             if (!sockethelper.IsSocketServerListening)
             {
                 if (EnableWebsocket.Value)

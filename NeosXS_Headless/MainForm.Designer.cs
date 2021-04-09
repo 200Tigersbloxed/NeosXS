@@ -38,6 +38,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.RestartSocketButton = new System.Windows.Forms.Button();
+            this.TestXSButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -129,11 +130,22 @@
             this.RestartSocketButton.UseVisualStyleBackColor = true;
             this.RestartSocketButton.Click += new System.EventHandler(this.RestartSocketButton_Click);
             // 
+            // TestXSButton
+            // 
+            this.TestXSButton.Location = new System.Drawing.Point(15, 315);
+            this.TestXSButton.Name = "TestXSButton";
+            this.TestXSButton.Size = new System.Drawing.Size(213, 23);
+            this.TestXSButton.TabIndex = 10;
+            this.TestXSButton.Text = "TEST XS NOTIFICATIONS";
+            this.TestXSButton.UseVisualStyleBackColor = true;
+            this.TestXSButton.Click += new System.EventHandler(this.TestXSButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(240, 316);
+            this.ClientSize = new System.Drawing.Size(240, 348);
+            this.Controls.Add(this.TestXSButton);
             this.Controls.Add(this.RestartSocketButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -165,6 +177,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button RestartSocketButton;
+        private System.Windows.Forms.Button TestXSButton;
     }
 }
 

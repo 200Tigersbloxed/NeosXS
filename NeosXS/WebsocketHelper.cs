@@ -89,9 +89,10 @@ namespace NeosXS
         protected override void OnMessage(MessageEventArgs e)
         {
             var msg = e.Data;
-            LogHelper.Debug("[DEBUG] OnMessage: " + msg);
+            LogHelper.Debug("[SOCKET] OnMessage: " + msg);
             var stringsplit = msg.Split('/');
             messageType msgType = messageTypeToEnum(stringsplit[0]);
+            LogHelper.Debug("msgType: " + msgType.ToString());
             string username = stringsplit[1];
             string extra1 = stringsplit[2];
 

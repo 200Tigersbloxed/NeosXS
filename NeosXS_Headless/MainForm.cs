@@ -66,5 +66,10 @@ namespace NeosXS_Headless
             wsh.host = HostTextBox.Text;
             wsh.port = Int32.Parse(PortTextBox.Text);
         }
+
+        private void TestXSButton_Click(object sender, EventArgs e)
+        {
+            NotificationSender.OnUserJoined("Test", "Test");
+        }
     }
 }

@@ -41,45 +41,8 @@
     <Reference Include="FrooxEngine">
       <HintPath>D:\Steam\steamapps\common\NeosVR\Neos_Data\Managed\FrooxEngine.dll</HintPath>
     </Reference>
-    <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
     <Reference Include="System" />
-    <Reference Include="System.Collections.Concurrent, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Steam\steamapps\common\NeosVR\Neos_Data\Managed\System.Collections.Concurrent.dll</HintPath>
-    </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Diagnostics.Debug, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Steam\steamapps\common\NeosVR\Neos_Data\Managed\System.Diagnostics.Debug.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Primitives, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Steam\steamapps\common\NeosVR\Neos_Data\Managed\System.Net.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Sockets, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Steam\steamapps\common\NeosVR\Neos_Data\Managed\System.Net.Sockets.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Resources.ResourceManager, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Steam\steamapps\common\NeosVR\Neos_Data\Managed\System.Resources.ResourceManager.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Steam\steamapps\common\NeosVR\Neos_Data\Managed\System.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Steam\steamapps\common\NeosVR\Neos_Data\Managed\System.Threading.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.ThreadPool, Version=4.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Steam\steamapps\common\NeosVR\Neos_Data\Managed\System.Threading.ThreadPool.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Steam\steamapps\common\NeosVR\Neos_Data\Managed\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -111,8 +74,8 @@
   </Target>
   <ItemGroup>
     <PackageReference Include="ILMerge" Version="3.0.41" />
-    <PackageReference Include="System.Text.Json">
-      <Version>6.0.0-preview.2.21154.6</Version>
+    <PackageReference Include="XSNotifications">
+      <Version>0.1.1</Version>
     </PackageReference>
   </ItemGroup>
   <Target Name="ILMerge">

@@ -59,6 +59,7 @@ namespace NeosXS
             // Update Host and Ports
             sockethelper.host = Host.Value;
             sockethelper.port = Port.Value;
+            sockethelper.XSOPort = XSOPort.Value;
             // Enable or Disable Websocket
             if (EnableWebsocket.Value)
             {
@@ -81,6 +82,7 @@ namespace NeosXS
 #else
     public class NeosXSAPI
     {
+        public int XSOPortAPI = 42069;
         private WebsocketHelper sockethelper = new WebsocketHelper();
 
         public void StartSocket() { sockethelper.StartSocket(); }
@@ -93,6 +95,7 @@ namespace NeosXS
 
         public void SetSocketHost(string host) { sockethelper.host = host; }
         public void SetSocketPort(int port) { sockethelper.port = port; }
+        public void UpdateXSOPort() { sockethelper.XSOPort = XSOPortAPI; }
     }
 #endif
 }

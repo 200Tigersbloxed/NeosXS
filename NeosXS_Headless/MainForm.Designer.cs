@@ -39,6 +39,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.RestartSocketButton = new System.Windows.Forms.Button();
             this.TestXSButton = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.XSOPortText = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -52,7 +54,7 @@
             // 
             // StartSocketButton
             // 
-            this.StartSocketButton.Location = new System.Drawing.Point(15, 228);
+            this.StartSocketButton.Location = new System.Drawing.Point(15, 257);
             this.StartSocketButton.Name = "StartSocketButton";
             this.StartSocketButton.Size = new System.Drawing.Size(213, 23);
             this.StartSocketButton.TabIndex = 1;
@@ -80,7 +82,7 @@
             // 
             // StopSocketButton
             // 
-            this.StopSocketButton.Location = new System.Drawing.Point(15, 257);
+            this.StopSocketButton.Location = new System.Drawing.Point(15, 286);
             this.StopSocketButton.Name = "StopSocketButton";
             this.StopSocketButton.Size = new System.Drawing.Size(213, 23);
             this.StopSocketButton.TabIndex = 4;
@@ -122,7 +124,7 @@
             // 
             // RestartSocketButton
             // 
-            this.RestartSocketButton.Location = new System.Drawing.Point(15, 286);
+            this.RestartSocketButton.Location = new System.Drawing.Point(15, 315);
             this.RestartSocketButton.Name = "RestartSocketButton";
             this.RestartSocketButton.Size = new System.Drawing.Size(213, 23);
             this.RestartSocketButton.TabIndex = 9;
@@ -132,7 +134,7 @@
             // 
             // TestXSButton
             // 
-            this.TestXSButton.Location = new System.Drawing.Point(15, 315);
+            this.TestXSButton.Location = new System.Drawing.Point(15, 344);
             this.TestXSButton.Name = "TestXSButton";
             this.TestXSButton.Size = new System.Drawing.Size(213, 23);
             this.TestXSButton.TabIndex = 10;
@@ -140,11 +142,30 @@
             this.TestXSButton.UseVisualStyleBackColor = true;
             this.TestXSButton.Click += new System.EventHandler(this.TestXSButton_Click);
             // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(12, 206);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(214, 23);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "XSOverlay Port:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // XSOPortText
+            // 
+            this.XSOPortText.Location = new System.Drawing.Point(15, 232);
+            this.XSOPortText.Name = "XSOPortText";
+            this.XSOPortText.Size = new System.Drawing.Size(213, 20);
+            this.XSOPortText.TabIndex = 11;
+            this.XSOPortText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.XSOPortText_KeyPress);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(240, 348);
+            this.ClientSize = new System.Drawing.Size(240, 380);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.XSOPortText);
             this.Controls.Add(this.TestXSButton);
             this.Controls.Add(this.RestartSocketButton);
             this.Controls.Add(this.label5);
@@ -178,6 +199,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button RestartSocketButton;
         private System.Windows.Forms.Button TestXSButton;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox XSOPortText;
     }
 }
 

@@ -5,9 +5,9 @@ namespace NeosXS
 {
     public class XSHelper
     {
-        public static void SendNotification(string title, string content)
+        public static void SendNotification(string title, string content, int Port)
         {
-            new XSNotifier().SendNotification(new XSNotification() { Title = title, Content = content });
+            new XSNotifier(Port, Port).SendNotification(new XSNotification() { Title = title, Content = content });
         }
     }
 }

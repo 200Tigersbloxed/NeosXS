@@ -69,7 +69,24 @@ namespace NeosXS_Headless
 
         private void TestXSButton_Click(object sender, EventArgs e)
         {
-            NotificationSender.OnUserJoined("Test", "Test");
+            NotificationSender.OnUserJoined("Test", "Test", wsh.XSOPort);
+        }
+
+        private void XSOPortText_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // make sure it's a number
+            // Verify that the pressed key isn't CTRL or any non-numeric digit
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+            // Update the XSOverlay Port
+            try
+            {
+                wsh.XSOPort = Int32.Parse(XSOPortText.Text);
+                wsh.UpdateWSBXSOPort();
+            }
+            catch (Exception) { /*it's either null or one character*/ }
         }
     }
 }

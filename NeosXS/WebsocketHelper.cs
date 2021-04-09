@@ -14,6 +14,7 @@ namespace NeosXS
         public bool IsSocketServerListening = false;
         public string host = "ws://localhost";
         public int port = 6875;
+        public int XSOPort = 42069;
 
         public int ComponentsEnabled = 0;
 
@@ -21,23 +22,8 @@ namespace NeosXS
         {
             if (!IsSocketServerListening)
             {
-                // Maybe we don't need to check components if the socket isn't connected
-                /*
-                if(ComponentsEnabled <= 0)
-                {
-                    wssv = new WebSocketServer(host + ":" + port.ToString());
-                    wssv.AddWebSocketService<NeosXSWSB>("/NeosXS");
-                    wssv.Start();
-                    IsSocketServerListening = true;
-                    LogHelper.Debug("Websocket started on " + host + ":" + port + ".");
-                }
-                else
-                {
-                    LogHelper.Warn("Sockets are already on and Multiple Components may be using it. Not starting the socket.");
-                }
-                */
-
                 wssv = new WebSocketServer(host + ":" + port.ToString());
+                NeosXSWSB.XSOPortforWSB = XSOPort;
                 wssv.AddWebSocketService<NeosXSWSB>("/NeosXS");
                 wssv.Start();
                 IsSocketServerListening = true;
@@ -82,10 +68,17 @@ namespace NeosXS
             WebSocketServer wssvLOCAL = StartSocket();
             return wssvLOCAL;
         }
+
+        public void UpdateWSBXSOPort()
+        {
+            NeosXSWSB.XSOPortforWSB = XSOPort;
+        }
     }
 
     public class NeosXSWSB : WebSocketBehavior
     {
+        public static int XSOPortforWSB = 42069;
+
         protected override void OnMessage(MessageEventArgs e)
         {
             var msg = e.Data;
@@ -99,16 +92,19 @@ namespace NeosXS
             switch (msgType)
             {
                 case messageType.UserJoined:
-                    NotificationSender.OnUserJoined(username, extra1);
+                    NotificationSender.OnUserJoined(username, extra1, XSOPortforWSB);
                     break;
                 case messageType.UserLeft:
-                    NotificationSender.OnUserLeft(username);
+                    NotificationSender.OnUserLeft(username, XSOPortforWSB);
                     break;
                 case messageType.UserPresentInWorld:
-                    NotificationSender.UserPresentInWorldChanged(username, extra1.ToLower() == "true");
+                    NotificationSender.UserPresentInWorldChanged(username, extra1.ToLower() == "true", XSOPortforWSB);
                     break;
                 case messageType.UserPresentInHeadset:
-                    NotificationSender.UserPresentInHeadsetChanged(username, extra1.ToLower() == "true");
+                    NotificationSender.UserPresentInHeadsetChanged(username, extra1.ToLower() == "true", XSOPortforWSB);
+                    break;
+                case messageType.Custom:
+                    XSHelper.SendNotification(username, extra1, XSOPortforWSB);
                     break;
             }
 
@@ -121,6 +117,7 @@ namespace NeosXS
             UserLeft,
             UserPresentInWorld,
             UserPresentInHeadset,
+            Custom,
             Unknown
         }
 
@@ -140,6 +137,9 @@ namespace NeosXS
                     break;
                 case "userpresentinheadset":
                     msgType = messageType.UserPresentInHeadset;
+                    break;
+                case "custom":
+                    msgType = messageType.Custom;
                     break;
             }
 

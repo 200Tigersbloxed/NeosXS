@@ -15,30 +15,30 @@ namespace NeosXS
     */
     public class NotificationSender
     {
-        public static void OnUserJoined(string username, string platform)
+        public static void OnUserJoined(string username, string platform, int XSOPort)
         {
-            XSHelper.SendNotification(username + " Joined the World!", "User's Platform is: " + platform);
+            XSHelper.SendNotification(username + " Joined the World!", "User's Platform is: " + platform, XSOPort);
         }
 
-        public static void OnUserLeft(string username)
+        public static void OnUserLeft(string username, int XSOPort)
         {
-            XSHelper.SendNotification(username + " Left the World!", RandomLeaveMessage());
+            XSHelper.SendNotification(username + " Left the World!", RandomLeaveMessage(), XSOPort);
         }
 
-        public static void UserPresentInWorldChanged(string username, bool value)
+        public static void UserPresentInWorldChanged(string username, bool value, int XSOPort)
         {
             if (value)
-                XSHelper.SendNotification(username + " has focused into the World", "Welcome back!");
+                XSHelper.SendNotification(username + " has focused into the World", "Welcome back!", XSOPort);
             else
-                XSHelper.SendNotification(username + " has unfocused from the World", "Huh, where'd you go?");
+                XSHelper.SendNotification(username + " has unfocused from the World", "Huh, where'd you go?", XSOPort);
         }
 
-        public static void UserPresentInHeadsetChanged(string username, bool value)
+        public static void UserPresentInHeadsetChanged(string username, bool value, int XSOPort)
         {
             if (value)
-                XSHelper.SendNotification(username + " put their Headset back on", "welcome back c:");
+                XSHelper.SendNotification(username + " put their Headset back on", "welcome back c:", XSOPort);
             else
-                XSHelper.SendNotification(username + " took off their Headset", "goodbye :c");
+                XSHelper.SendNotification(username + " took off their Headset", "goodbye :c", XSOPort);
         }
 
         private static string RandomLeaveMessage()

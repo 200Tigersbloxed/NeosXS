@@ -95,6 +95,7 @@ namespace NeosXS
 
         public void SetSocketHost(string host) { sockethelper.host = host; }
         public void SetSocketPort(int port) { sockethelper.port = port; }
+        public void SetSocketXSOPort(int xsoport) { XSOPortAPI = xsoport; }
         public void UpdateXSOPort() { sockethelper.XSOPort = XSOPortAPI; }
     }
 #endif

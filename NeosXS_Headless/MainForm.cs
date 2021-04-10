@@ -14,8 +14,9 @@ namespace NeosXS_Headless
 {
     public partial class MainForm : Form
     {
-        WebsocketHelper wsh = new WebsocketHelper();
+        NeosXSAPI nsxapi = new NeosXSAPI();
         System.Timers.Timer aTimer;
+        public int XSOPortGlobal = 42069;
 
         public MainForm()
         {
@@ -24,27 +25,27 @@ namespace NeosXS_Headless
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            HostTextBox.Text = wsh.host;
-            PortTextBox.Text = wsh.port.ToString();
+            HostTextBox.Text = nsxapi.GetSocketHost();
+            PortTextBox.Text = nsxapi.GetSocketPort().ToString();
             SetTimer();
         }
 
         private void StartSocketButton_Click(object sender, EventArgs e)
         {
-            if (!wsh.IsSocketServerListening)
-                wsh.StartSocket();
+            if (!nsxapi.IsSocketListening())
+                nsxapi.StartSocket();
         }
 
         private void StopSocketButton_Click(object sender, EventArgs e)
         {
-            if (wsh.IsSocketServerListening)
-                wsh.StopSocket();
+            if (nsxapi.IsSocketListening())
+                nsxapi.StopSocket();
         }
 
         private void RestartSocketButton_Click(object sender, EventArgs e)
         {
             StatusLabel.Text = "RESTARTING...";
-            wsh.RestartSocket();
+            nsxapi.RestartSocket();
         }
 
         // Timer
@@ -58,18 +59,22 @@ namespace NeosXS_Headless
 
         private void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
-            if (wsh.IsSocketServerListening)
+            if (nsxapi.IsSocketListening())
                 StatusLabel.Text = "CONNECTED";
             else
                 StatusLabel.Text = "DISCONNECTED";
 
-            wsh.host = HostTextBox.Text;
-            wsh.port = Int32.Parse(PortTextBox.Text);
+            nsxapi.SetSocketHost(HostTextBox.Text);
+            nsxapi.SetSocketPort(Int32.Parse(PortTextBox.Text));
         }
 
         private void TestXSButton_Click(object sender, EventArgs e)
         {
-            NotificationSender.OnUserJoined("Test", "Test", wsh.XSOPort);
+            try
+            {
+                XSHelper.SendNotification("Test", "Did it work?", XSOPortGlobal);
+            }
+            catch (Exception) { }
         }
 
         private void XSOPortText_KeyPress(object sender, KeyPressEventArgs e)
@@ -83,8 +88,9 @@ namespace NeosXS_Headless
             // Update the XSOverlay Port
             try
             {
-                wsh.XSOPort = Int32.Parse(XSOPortText.Text);
-                wsh.UpdateWSBXSOPort();
+                XSOPortGlobal = Int32.Parse(XSOPortText.Text);
+                nsxapi.SetSocketXSOPort(XSOPortGlobal);
+                nsxapi.UpdateXSOPort();
             }
             catch (Exception) { /*it's either null or one character*/ }
         }

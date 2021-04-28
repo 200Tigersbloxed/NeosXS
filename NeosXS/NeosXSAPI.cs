@@ -16,8 +16,6 @@ namespace NeosXS
     [Category("NeosXS")]
     class NeosXSAPI : Component, ICustomInspector
     {
-        private WebsocketHelper sockethelper = new WebsocketHelper();
-
         public readonly Sync<bool> EnableWebsocket;
         public readonly Sync<string> Host;
         public readonly Sync<int> Port;
@@ -39,43 +37,43 @@ namespace NeosXS
 
         protected override void OnEnabled()
         {
-            if (!sockethelper.IsSocketServerListening)
+            if (!WebsocketHelper.IsSocketServerListening)
             {
                 if (EnableWebsocket.Value)
                 {
                     // Start the websocket 5head
                     if (EnableWebsocket.Value)
                     {
-                        sockethelper.StartSocket();
+                        WebsocketHelper.StartSocket();
                     }
                 }
             }
-            sockethelper.ComponentsEnabled = sockethelper.ComponentsEnabled + 1;
+            WebsocketHelper.ComponentsEnabled = WebsocketHelper.ComponentsEnabled + 1;
             base.OnEnabled();
         }
 
         protected override void OnChanges()
         {
             // Update Host and Ports
-            sockethelper.host = Host.Value;
-            sockethelper.port = Port.Value;
-            sockethelper.XSOPort = XSOPort.Value;
+            WebsocketHelper.host = Host.Value;
+            WebsocketHelper.port = Port.Value;
+            WebsocketHelper.XSOPort = XSOPort.Value;
             // Enable or Disable Websocket
             if (EnableWebsocket.Value)
             {
-                sockethelper.RestartSocket();
+                WebsocketHelper.RestartSocket();
             } 
             else
             {
-                sockethelper.StopSocket();
+                WebsocketHelper.StopSocket();
             }
             base.OnChanges();
         }
 
         protected override void OnDestroy()
         {
-            sockethelper.ComponentsEnabled = sockethelper.ComponentsEnabled - 1;
-            sockethelper.StopSocket();
+            WebsocketHelper.ComponentsEnabled = WebsocketHelper.ComponentsEnabled - 1;
+            WebsocketHelper.StopSocket();
             base.OnDestroy();
         }
     }
@@ -83,20 +81,18 @@ namespace NeosXS
     public class NeosXSAPI
     {
         public int XSOPortAPI = 42069;
-        private WebsocketHelper sockethelper = new WebsocketHelper();
 
-        public void StartSocket() { sockethelper.StartSocket(); }
-        public void StopSocket() { sockethelper.StopSocket(); }
-        public void RestartSocket() { sockethelper.RestartSocket(); }
+        public void StartSocket() { WebsocketHelper.StartSocket(); }
+        public void StopSocket() { WebsocketHelper.StopSocket(); }
+        public void RestartSocket() { WebsocketHelper.RestartSocket(); }
 
-        public string GetSocketHost() { return sockethelper.host; }
-        public int GetSocketPort() { return sockethelper.port; }
-        public bool IsSocketListening() { return sockethelper.IsSocketServerListening; }
+        public string GetSocketHost() { return WebsocketHelper.host; }
+        public int GetSocketPort() { return WebsocketHelper.port; }
+        public bool IsSocketListening() { return WebsocketHelper.IsSocketServerListening; }
 
-        public void SetSocketHost(string host) { sockethelper.host = host; }
-        public void SetSocketPort(int port) { sockethelper.port = port; }
-        public void SetSocketXSOPort(int xsoport) { XSOPortAPI = xsoport; }
-        public void UpdateXSOPort() { sockethelper.XSOPort = XSOPortAPI; }
+        public void SetSocketHost(string host) { WebsocketHelper.host = host; }
+        public void SetSocketPort(int port) { WebsocketHelper.port = port; }
+        public void UpdateXSOPort() { WebsocketHelper.XSOPort = XSOPortAPI; }
     }
 #endif
 }

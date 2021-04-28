@@ -1,29 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebSocketSharp;
 using WebSocketSharp.Server;
 
 namespace NeosXS
 {
-    public class WebsocketHelper
+    public static class WebsocketHelper
     {
-        public WebSocketServer wssv;
-        public bool IsSocketServerListening = false;
-        public string host = "ws://localhost";
-        public int port = 6875;
-        public int XSOPort = 42069;
+        public static WebSocketServer wssv;
+        public static bool IsSocketServerListening = false;
+        public static string host = "ws://localhost";
+        public static int port = 6875;
+        public static int XSOPort = 42069;
 
-        public int ComponentsEnabled = 0;
+        public static int ComponentsEnabled = 0;
 
-        public WebSocketServer StartSocket()
+        public static WebSocketServer StartSocket()
         {
             if (!IsSocketServerListening)
             {
                 wssv = new WebSocketServer(host + ":" + port.ToString());
-                NeosXSWSB.XSOPortforWSB = XSOPort;
                 wssv.AddWebSocketService<NeosXSWSB>("/NeosXS");
                 wssv.Start();
                 IsSocketServerListening = true;
@@ -37,7 +32,7 @@ namespace NeosXS
             return wssv;
         }
 
-        public void StopSocket()
+        public static void StopSocket()
         {
             if(wssv != null && IsSocketServerListening == true)
             {
@@ -62,49 +57,43 @@ namespace NeosXS
             }
         }
 
-        public WebSocketServer RestartSocket()
+        public static WebSocketServer RestartSocket()
         {
             StopSocket();
             WebSocketServer wssvLOCAL = StartSocket();
             return wssvLOCAL;
         }
-
-        public void UpdateWSBXSOPort()
-        {
-            NeosXSWSB.XSOPortforWSB = XSOPort;
-        }
     }
 
     public class NeosXSWSB : WebSocketBehavior
     {
-        public static int XSOPortforWSB = 42069;
-
         protected override void OnMessage(MessageEventArgs e)
         {
+            LogHelper.Debug("[NEOSXSWSB] XSOPortforWSB: " + WebsocketHelper.XSOPort.ToString());
             var msg = e.Data;
             LogHelper.Debug("[SOCKET] OnMessage: " + msg);
             var stringsplit = msg.Split('/');
             messageType msgType = messageTypeToEnum(stringsplit[0]);
-            LogHelper.Debug("msgType: " + msgType.ToString());
+            LogHelper.Debug("[SOCKET] msgType: " + msgType.ToString());
             string username = stringsplit[1];
             string extra1 = stringsplit[2];
 
             switch (msgType)
             {
                 case messageType.UserJoined:
-                    NotificationSender.OnUserJoined(username, extra1, XSOPortforWSB);
+                    NotificationSender.OnUserJoined(username, extra1, WebsocketHelper.XSOPort);
                     break;
                 case messageType.UserLeft:
-                    NotificationSender.OnUserLeft(username, XSOPortforWSB);
+                    NotificationSender.OnUserLeft(username, WebsocketHelper.XSOPort);
                     break;
                 case messageType.UserPresentInWorld:
-                    NotificationSender.UserPresentInWorldChanged(username, extra1.ToLower() == "true", XSOPortforWSB);
+                    NotificationSender.UserPresentInWorldChanged(username, extra1.ToLower() == "true", WebsocketHelper.XSOPort);
                     break;
                 case messageType.UserPresentInHeadset:
-                    NotificationSender.UserPresentInHeadsetChanged(username, extra1.ToLower() == "true", XSOPortforWSB);
+                    NotificationSender.UserPresentInHeadsetChanged(username, extra1.ToLower() == "true", WebsocketHelper.XSOPort);
                     break;
                 case messageType.Custom:
-                    XSHelper.SendNotification(username, extra1, XSOPortforWSB);
+                    XSHelper.SendNotification(WebsocketHelper.XSOPort, username, extra1);
                     break;
             }
 

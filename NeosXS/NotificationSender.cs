@@ -17,28 +17,28 @@ namespace NeosXS
     {
         public static void OnUserJoined(string username, string platform, int XSOPort)
         {
-            XSHelper.SendNotification(username + " Joined the World!", "User's Platform is: " + platform, XSOPort);
+            XSHelper.SendNotification(XSOPort, username + " Joined the World!", "User's Platform is: " + platform);
         }
 
         public static void OnUserLeft(string username, int XSOPort)
         {
-            XSHelper.SendNotification(username + " Left the World!", RandomLeaveMessage(), XSOPort);
+            XSHelper.SendNotification(XSOPort, username + " Left the World!", RandomLeaveMessage());
         }
 
         public static void UserPresentInWorldChanged(string username, bool value, int XSOPort)
         {
             if (value)
-                XSHelper.SendNotification(username + " has focused into the World", "Welcome back!", XSOPort);
+                XSHelper.SendNotification(XSOPort, username + " has focused into the World", "Welcome back!");
             else
-                XSHelper.SendNotification(username + " has unfocused from the World", "Huh, where'd you go?", XSOPort);
+                XSHelper.SendNotification(XSOPort, username + " has unfocused from the World", "Huh, where'd you go?");
         }
 
         public static void UserPresentInHeadsetChanged(string username, bool value, int XSOPort)
         {
             if (value)
-                XSHelper.SendNotification(username + " put their Headset back on", "welcome back c:", XSOPort);
+                XSHelper.SendNotification(XSOPort, username + " put their Headset back on", "welcome back c:");
             else
-                XSHelper.SendNotification(username + " took off their Headset", "goodbye :c", XSOPort);
+                XSHelper.SendNotification(XSOPort, username + " took off their Headset", "goodbye :c");
         }
 
         private static string RandomLeaveMessage()

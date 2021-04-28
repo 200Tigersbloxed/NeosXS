@@ -15,17 +15,17 @@ namespace NeosXS
     {
         public static void Debug(object objToDebug)
         {
-            UniLog.Log("[NeosXS] " + objToDebug);
+            UniLog.Log("[NeosXS] (DEBUG) " + objToDebug);
         }
 
         public static void Warn(object objToDebug)
         {
-            UniLog.Warning("[NeosXS] " + objToDebug);
+            UniLog.Warning("[NeosXS] (WARN) " + objToDebug);
         }
 
         public static void Error(object objToDebug)
         {
-            UniLog.Error("[NeosXS] " + objToDebug);
+            UniLog.Error("[NeosXS] (ERROR) " + objToDebug);
         }
     }
 #else
@@ -33,17 +33,17 @@ namespace NeosXS
     {
         public static void Debug(object objToDebug)
         {
-            Console.WriteLine("[NeosXS] [DEBUG]" + objToDebug);
+            Console.WriteLine("[NeosXS] (DEBUG)" + objToDebug);
         }
 
         public static void Warn(object objToDebug)
         {
-            Console.WriteLine("[NeosXS] [WARN]" + objToDebug);
+            Console.WriteLine("[NeosXS] (WARN)" + objToDebug);
         }
 
         public static void Error(object objToDebug)
         {
-            Console.WriteLine("[NeosXS] [ERROR]" + objToDebug);
+            Console.WriteLine("[NeosXS] (ERROR)" + objToDebug);
         }
     }
 #endif

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 using NeosXS;
@@ -70,11 +63,7 @@ namespace NeosXS_Headless
 
         private void TestXSButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                XSHelper.SendNotification("Test", "Did it work?", XSOPortGlobal);
-            }
-            catch (Exception) { }
+            XSHelper.SendNotification(42069, "hi", "hey");
         }
 
         private void XSOPortText_KeyPress(object sender, KeyPressEventArgs e)
@@ -89,7 +78,7 @@ namespace NeosXS_Headless
             try
             {
                 XSOPortGlobal = Int32.Parse(XSOPortText.Text);
-                nsxapi.SetSocketXSOPort(XSOPortGlobal);
+                nsxapi.XSOPortAPI = XSOPortGlobal;
                 nsxapi.UpdateXSOPort();
             }
             catch (Exception) { /*it's either null or one character*/ }

@@ -34,6 +34,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'debugjygvt|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\debugjygvt\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BaseX">
       <HintPath>D:\Steam\steamapps\common\NeosVR\BaseX.dll</HintPath>
@@ -54,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="NotificationSender.cs" />
     <Compile Include="NeosXSAPI.cs" />
@@ -75,7 +85,7 @@
   <ItemGroup>
     <PackageReference Include="ILMerge" Version="3.0.41" />
     <PackageReference Include="XSNotifications">
-      <Version>0.1.1</Version>
+      <Version>0.1.2</Version>
     </PackageReference>
   </ItemGroup>
   <Target Name="ILMerge">

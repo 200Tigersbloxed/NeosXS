@@ -1,6 +1,8 @@
 # NeosXS
 Implement support for XSOverlay's Notifications in Neos
 
+**NOTE:** in-game setup is **required** for this to work. Please see the [wiki](https://github.com/200Tigersbloxed/NeosXS/wiki) for more information.
+
 ## NeosXSPlugin
 
 The Intro to working with the NeosXSPlugin.
@@ -25,9 +27,9 @@ Note: The Neos Headless App's StatusLabel is slow to update (10s) Spamming butto
 
 ### Installing
 
-Step 1) Download `NeosXS_Headless.zip` from the Releases Page
+Step 1) Download `NeosXS_Headless.exe` from the Releases Page
 
-Step 2) Extract the Zip file Somewhere. (Inside a Directory would be optimal)
+Step 2) Move the exe file anywhere (A directory is not required, you can drop it on your desktop if you want to)
 
 Step 3) Run NeosXS_Headless.exe
 
